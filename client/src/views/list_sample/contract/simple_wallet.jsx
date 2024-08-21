@@ -40,7 +40,9 @@ function SimpleWallet() {
   return (
     <>
       <section className="w-full h-screen bg-yellow-300 pt-14 flex items-center justify-center flex-col">
-        <h1 className="text-[30px] font-bold mb-10">simple wallet</h1>
+        <h1 className="text-[30px] font-bold mb-10">
+          simple wallet smart contract
+        </h1>
         <div className="w-1/2 h-fit flex items-center gap-2 justify-center">
           <input
             type="text"

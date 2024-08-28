@@ -5,6 +5,7 @@ import abi from "../../../../ABI/simple_wallet.js";
 function SimpleWallet() {
   const [contract, setContract] = useState({});
   const [balance, setBalance] = useState(undefined);
+  const [provide, setProvide] = useState({});
 
   useEffect(() => {
     connectEther();
@@ -16,6 +17,7 @@ function SimpleWallet() {
         await ethereum.request({ method: "eth_requestAccounts" });
         const prov = new ethers.providers.Web3Provider(window.ethereum);
         const sig = await prov.getSigner();
+        setProvide(sig);
         // console.log(sig, ">>>>>>>>>>>");
 
         const contractAddress = import.meta.env
@@ -23,18 +25,30 @@ function SimpleWallet() {
         // console.log(abi, "????");
 
         const smartContract = new ethers.Contract(contractAddress, abi, prov); // connect ke contractnya
-        console.log(smartContract, "??????????????????????");
+        // console.log(smartContract, "??????????????????????");
         setContract(smartContract);
         const balanceInWei = await smartContract.showBalanceInAddress();
         const balanceInEther = ethers.utils.formatEther(balanceInWei);
-        console.log(balanceInEther, "<<<<<<<");
-        setBalance("udin");
+        // console.log(balanceInEther, "<<<<<<<");
+        setBalance(balanceInEther);
       } else {
-        console.log("Ethereum wallet is not connected.");
+        console.log("Ethereum wallet is not connected. !!!!!");
       }
     } catch (error) {
       console.log(error, "!!!!!!!!!!!!!!!!!");
     }
+  };
+
+  const deposit = async () => {
+    console.log("click");
+    const tx = await contract.connect(provide); // connect user yang ke smart contract
+    console.log(tx);
+
+    const response = await tx.deposit({
+      value: ethers.utils.parseEther("11"), // 11 eth
+    });
+
+    console.log(response, "????");
   };
 
   return (
@@ -49,6 +63,12 @@ function SimpleWallet() {
             className="w-1/2 h-10 px-2"
             placeholder="nominal deposit..."
           />
+          <button
+            onClick={deposit}
+            className="px-10 py-3 bg-red-300 text-white text-xl"
+          >
+            deposit
+          </button>
         </div>
         <div className="w-1/2 h-fit flex flex-col items-center justify-center mt-10">
           <h1>

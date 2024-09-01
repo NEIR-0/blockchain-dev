@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 function ListSamples() {
   return (
     <>
-      <Link to="/cover_list/simple_wallet">simple_wallet</Link>
+      <section className="w-full h-screen pt-16 flex flex-col">
+        <Link to="/cover_list/public_wallet">public wallet</Link>
+        <Link to="/cover_list/private_wallet">private wallet</Link>
+      </section>
     </>
   );
 }

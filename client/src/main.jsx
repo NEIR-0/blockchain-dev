@@ -1,12 +1,13 @@
 import { StrictMode } from "react";
 import "./index.css";
-import * as ReactDOM from "react-dom";
+import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import HomePages from "./views/homepages";
 import ListSamples from "./views/list_sample/list_sample";
-import SimpleWallet from "./views/list_sample/contract/simple_wallet";
 import CoverList from "./views/list_sample/cover_list";
+import PublicWallet from "./views/list_sample/contract/public_wallet";
+import PrivateWallet from "./views/list_sample/contract/private_wallet";
 
 const router = createBrowserRouter([
   {
@@ -26,8 +27,12 @@ const router = createBrowserRouter([
         element: <CoverList />,
         children: [
           {
-            path: "simple_wallet",
-            element: <SimpleWallet />,
+            path: "public_wallet",
+            element: <PublicWallet />,
+          },
+          {
+            path: "private_wallet",
+            element: <PrivateWallet />,
           },
         ],
       },

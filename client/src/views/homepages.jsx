@@ -6,31 +6,31 @@ import { useEffect } from "react";
 import { gsap } from "gsap";
 
 function HomePages() {
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const scrollPosition = window.scrollY / window.innerHeight;
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY / window.innerHeight;
 
-  //     gsap.to("#textLeft", {
-  //       x: scrollPosition * 200,
-  //       ease: "power2.out",
-  //     });
+      gsap.to("#textLeft", {
+        x: scrollPosition * 200,
+        ease: "power2.out",
+      });
 
-  //     gsap.to("#textRight", {
-  //       x: -scrollPosition * 200,
-  //       ease: "power2.out",
-  //     });
-  //   };
+      gsap.to("#textRight", {
+        x: -scrollPosition * 200,
+        ease: "power2.out",
+      });
+    };
 
-  //   window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <>
-      {/* <Headers /> */}
-      {/* <section className="w-full h-screen flex items-center justify-center bg-blue-400">
+      <Headers />
+      <section className="w-full h-screen flex items-center justify-center bg-blue-400">
         <Canvas
           camera={{
             fov: 50,
@@ -39,24 +39,7 @@ function HomePages() {
         >
           <Bitcoin />
         </Canvas>
-      </section> */}
-      <div className="relative h-screen w-full overflow-hidden">
-        <div
-          className="fixed top-1/2 left-0 transform -translate-y-1/2 text-3xl whitespace-nowrap"
-          id="textLeft"
-        >
-          Left Text
-        </div>
-        <div
-          className="fixed top-1/2 right-0 transform -translate-y-1/2 text-3xl whitespace-nowrap"
-          id="textRight"
-        >
-          Right Text
-        </div>
-        <div className="h-[200vh] bg-gray-100 flex items-center justify-center">
-          <div className="text-4xl">Scroll down to see the effect!</div>
-        </div>
-      </div>
+      </section>
     </>
   );
 }
